@@ -1,1 +1,169 @@
-# DeAngel
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Aracely ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos de la Pantalla de Inicio */
+        #inicio {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffc0cb; /* Fondo Rosado */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 1s ease;
+        }
+
+        .rosas-lateral {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 80px;
+            font-size: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            user-select: none;
+        }
+
+        .izquierda { left: 10px; }
+        .derecha { right: 10px; }
+
+        .hola-texto {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #d63384;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px white;
+        }
+
+        #btnEntrar {
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: bold;
+        }
+
+        #btnEntrar:hover { transform: scale(1.1); background-color: #ff0040; }
+
+        /* Estilos del Contenido Principal (San Valentín) */
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 400px;
+            display: none; /* Oculto al inicio */
+        }
+
+        h2 { font-family: 'Dancing Script', cursive; color: #d63384; font-size: 2.5rem; }
+        
+        .btn-container { 
+            position: relative; 
+            height: 100px; 
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .si-btn { background: #ff4d6d; color: white; padding: 15px 30px; border-radius: 50px; border: none; cursor: pointer; font-size: 1.2rem; }
+        .no-btn { background: #adb5bd; color: white; padding: 10px 20px; border-radius: 50px; border: none; position: absolute; cursor: pointer; }
+
+        /* Corazones flotantes */
+        .heart { position: absolute; color: #ff4d6d; animation: float 4s linear infinite; }
+        @keyframes float { 
+            0% { transform: translateY(100vh); opacity: 1; } 
+            100% { transform: translateY(-10vh); opacity: 0; } 
+        }
+    </style>
+</head>
+<body>
+
+    <div id="inicio">
+        <div class="rosas-lateral izquierda">🌹<br>🌹<br>🌹<br>🌹<br>🌹</div>
+        <div class="hola-texto">HOLA ARACELY</div>
+        <button id="btnEntrar">PRESIONA AQUÍ</button>
+        <div class="rosas-lateral derecha">🌹<br>🌹<br>🌹<br>🌹<br>🌹</div>
+    </div>
+
+    <div class="card" id="pregunta">
+        <h2>¿Quieres ser mi San Valentín? ❤️</h2>
+        <div class="btn-container">
+            <button class="si-btn" id="yes">¡SÍ! 😍</button>
+            <button class="no-btn" id="no">No 😢</button>
+        </div>
+    </div>
+
+    <script>
+        const inicio = document.getElementById('inicio');
+        const btnEntrar = document.getElementById('btnEntrar');
+        const pregunta = document.getElementById('pregunta');
+        const btnNo = document.getElementById('no');
+        const btnSi = document.getElementById('yes');
+
+        // Al presionar "PRESIONA AQUÍ"
+        btnEntrar.addEventListener('click', () => {
+            inicio.style.opacity = '0';
+            setTimeout(() => {
+                inicio.style.display = 'none';
+                pregunta.style.display = 'block';
+            }, 1000);
+        });
+
+        // El botón No escapa
+        btnNo.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            btnNo.style.left = x + 'px';
+            btnNo.style.top = y + 'px';
+        });
+
+        // Al decir que sí
+        btnSi.addEventListener('click', () => {
+            pregunta.innerHTML = "<h2>¡Sabía que dirías que sí! ❤️ Te amo, Aracely</h2>";
+            setInterval(createHeart, 200);
+        });
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+    </script>
+</body>
+</html>
